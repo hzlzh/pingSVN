@@ -36,7 +36,7 @@ logFile="pingSvn/svn.log"
 ```php
 <?php
 
-$lock_filename      = "pingSvn/lock.do";
+$lock_filename   = "pingSvn/lock.do";
 //修改为你的锁文件，后面的文件最好为lock.do不变
 $update_filename = "pingSvn/update.do";
 //修改为你的更新文件，后面的update.do不变，如果需要修改，则manual_check_svn.sh中的update.do需要修改为一致的名称
