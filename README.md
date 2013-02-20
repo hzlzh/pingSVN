@@ -20,27 +20,30 @@
 
 ### 1. 配置 `manual_check_svn.sh`  
 
+```sh
+#修改为你的密码文件的路径
+passwdFile="/data/tools/svn_passwod.txt"
+#修改为你的应用部署的目录下存放的更新的文件，检测的svn是否更新的文件。此文件由授权人在update_svn.php产生。update.do最好不修改
+updateFile="/data/www/webapps/pingSVV/update.do"
+#修改为你的应用部署的目录
+current_svn="/data/www/webapps"
+#修改为你的应用部署的目录下的log的存放位置
+logFile="pingSvn/svn.log"
+```
 
-    #修改为你的密码文件的路径
-    passwdFile="/data/tools/svn_passwod.txt"
+### 2. 配置 `pingSVN.php`
 
-    #修改为你的应用部署的目录下存放的更新的文件，检测的svn是否更新的文件。此文件由授权人在update_svn.php产生。update.do最好不修改
-    updateFile="/data/www/webapps/pingSVV/update.do"
+```php
+<?php
 
-    #修改为你的应用部署的目录
-    current_svn="/data/www/webapps"
+$lock_filename      = "pingSvn/lock.do";
+//修改为你的锁文件，后面的文件最好为lock.do不变
+$update_filename = "pingSvn/update.do";
+//修改为你的更新文件，后面的update.do不变，如果需要修改，则manual_check_svn.sh中的update.do需要修改为一致的名称
+echo file_get_contents("http://yoursite/pingSvn/svn.log");
 
-    #修改为你的应用部署的目录下的log的存放位置
-    logFile="pingSvn/svn.log"
-
-### 2. 配置 `update_svn.php`
-
-    $lock_filename      = "pingSVN/lock.do";
-    //修改为你的锁文件，后面的文件最好为lock.do不变
-    $update_filename = "pingSVN/update.do";
-    //修改为你的更新文件，后面的update.do不变，如果需要修改，则manual_check_svn.sh中的update.do需要修改为一致的名称
-
-    echo file_get_contents("http://yoursite/pingSVN/svn.log");
+?>
+```
 
 ### 3. 设置 `svn_passwod.txt`格式
 
@@ -54,21 +57,21 @@
 
 ssh登录到服务器，执行下面命令：
 
-`
+```sh
 crontab -e
-`
+```
 
 然后加入计划：*(例如每1分钟进行1次更新)*  
 
-`bash
+```sh
 */1 * * * *  /data/tools/manual_check_svn.sh
-`
+```
 
-## 版权
+## 版权协议
 
 `PHP`&`Shell` by [@Lucky](https://twitter.com/lucky9805) | `HTML/CSS` by [@hzlzh](https://twitter.com/hzlzh)  
 Available under [MIT License](http://rem.mit-license.org "MIT License").
 
-## 预览
+## 界面预览
 
 ![pingSVN Screenshot](https://raw.github.com/hzlzh/pingSVN/master/screenshot.png)
