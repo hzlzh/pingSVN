@@ -28,7 +28,7 @@ updateFile="/data/www/webapps/pingSVV/update.do"
 #修改为你的应用部署的目录
 current_svn="/data/www/webapps"
 #修改为你的应用部署的目录下的log的存放位置
-logFile="pingSvn/svn.log"
+logFile="pingSVN/svn.log"
 ```
 
 ### 2. 配置 `pingSVN.php`
@@ -36,11 +36,11 @@ logFile="pingSvn/svn.log"
 ```php
 <?php
 
-$lock_filename   = "pingSvn/lock.do";
+$lock_filename   = "pingSVN/lock.do";
 //修改为你的锁文件，后面的文件最好为lock.do不变
-$update_filename = "pingSvn/update.do";
+$update_filename = "pingSVN/update.do";
 //修改为你的更新文件，后面的update.do不变，如果需要修改，则manual_check_svn.sh中的update.do需要修改为一致的名称
-echo file_get_contents("http://yoursite/pingSvn/svn.log");
+echo file_get_contents("http://yoursite/pingSVN/svn.log");
 
 ?>
 ```
