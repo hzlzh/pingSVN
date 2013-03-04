@@ -129,12 +129,17 @@ if( $_POST["action"] == $submit_locked )
     </form>
   </div>
   <div class="svn-log">
-    <ul>
+    <ul id="logBox">
 <?php
 echo file_get_contents("http://yoursite/pingSVN/svn.log");
 ?>
     </ul>
   </div>
   <div class="copyright">&copy; 2013 Windmaker - pingSVN</div>
+<script>
+  //Force scrollbar to bottom
+  var objDiv = document.getElementById("logBox");
+  objDiv.scrollTop = objDiv.scrollHeight;
+</script>
 </body>
 </html>
